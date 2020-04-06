@@ -1,4 +1,4 @@
-# Vue-ToDo lists
+# Vue-Todo lists
 To-Do list organize
 - Multiple 
 - Responsive
