@@ -1,0 +1,119 @@
+@mixin font($size, $color: $black-color, $weight: normal) {
+  color: $color;
+  font-family: 'Fira Code', Helvetica, Arial, monospace;
+  font-size: $size;
+  font-weight: $weight;
+}
+
+@mixin colorizeSvg($color) {
+  .svg-colorized-el {
+    fill: $color;
+    &__stroke {
+      stroke: $color;
+    }
+  }
+}
+
+@mixin buttonPrimary($hoverBorderColor, $activeBorderColor, $disabledBorderColor) {
+  color: $white-color;
+  &:hover:not([disabled]) {
+    border-color: $hoverBorderColor;
+  }
+  &:active:not([disabled]) {
+    border-color: $activeBorderColor;
+  }
+  &[disabled] {
+    border-color: $disabledBorderColor;
+  }
+}
+
+@mixin translateX($tag) {
+  .#{$tag}-enter-active,
+  .#{$tag}-leave-active {
+    transition: all $transition-fast;
+  }
+  .#{$tag}-enter,
+  .#{$tag}-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+}
+
+@mixin fade() {
+  .fade-enter {
+    opacity: 0;
+  }
+
+  .fade-enter-active {
+    transition: opacity $transition/2 ease;
+  }
+
+  .fade-leave-active {
+    transition: opacity $transition/2 ease;
+    opacity: 0;
+  }
+}
+
+@mixin blink() {
+  animation: blink 1s steps(2, start) infinite;
+
+  @include keyframes(blink) {
+    to {
+      visibility: hidden;
+    }
+  }
+}
+
+@mixin shadowWave() {
+  border: 2px solid $green-color;
+  box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $red-color,
+  10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+  15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+  20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+
+  &:hover {
+    animation: shadow-wave 1s ease infinite;
+  }
+  @include keyframes(shadow-wave) {
+    0% {
+      box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $red-color,
+      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+    }
+    35% {
+      box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
+      10px -10px 0 -2px $dark-green-color, 10px -10px $red-color,
+      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+    }
+    65% {
+      box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
+      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+      15px -15px 0 -2px $dark-green-color, 15px -15px $red-color,
+      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+    }
+    100% {
+      box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
+      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+      20px -20px 0 -2px $dark-green-color, 20px -20px $red-color;
+    }
+  }
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+

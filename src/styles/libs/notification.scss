@@ -1,0 +1,66 @@
+.vue-notification-group {
+  @media all and (max-width: 850px) {
+    width: 100% !important;
+  }
+}
+
+.vue-notification-wrapper {
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.vue-notification {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0 5px 5px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+
+  &__content-wrapper {
+    width: 100%;
+  }
+
+  &__content {
+    width: 100%;
+    overflow: hidden;
+    :global(a),
+    :global(.helper) {
+      white-space: nowrap;
+      color: $white-color;
+      border-bottom: 1px dashed;
+      text-decoration: none;
+      margin-left: 16px;
+      cursor: pointer;
+    }
+    :global(.v-popover) {
+      display: inline-block;
+    }
+  }
+
+  &__title {
+    @include font(12px, $white-color);
+    padding-bottom: 12px;
+  }
+
+  &__text-info {
+    @include font(12px, $white-color);
+  }
+
+  &__close {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 0;
+    background: url('~@/assets/svg/crossWhite.svg') no-repeat center;
+    width: 50px;
+    height: 70%;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
