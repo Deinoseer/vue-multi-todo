@@ -18,6 +18,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  base: process.env.NODE_ENV === "production" ? "/vue-todo" : "/",
   routes,
   mode: "history"
 });
