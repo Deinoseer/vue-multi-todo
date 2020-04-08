@@ -7,6 +7,8 @@ To-Do list organize
 Using Vuex and LocalStorage
 
 ## Demo
+Demo url: [http://dmtk.space/vue-todo/](http://dmtk.space/vue-todo/)
+
 ![Demo Image](demo.gif)
 
 
