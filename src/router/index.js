@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "Views/Home.vue";
+import ViewTodo from "Views/viewTodo.vue";
 
 Vue.use(VueRouter);
 
@@ -12,7 +13,7 @@ const routes = [
   },
   {
     path: "/todo",
-    component: () => import("../views/viewTodo")
+    component: ViewTodo
   }
 ];
 

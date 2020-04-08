@@ -4,7 +4,8 @@ const aliases = {
   "@": "src",
   Components: "src/components",
   Common: "src/components/common",
-  Uikit: "src/components/uikit"
+  Uikit: "src/components/uikit",
+  Views: "src/views"
 };
 
 module.exports = {
