@@ -58,10 +58,10 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0 6px;
-  border: 1px solid $orange-color;
+  border: 1px solid transparent;
   background-color: transparent;
   transition: border-color $transition, background-color $transition,
-    color $transition;
+    color $transition, opacity $transition;
   text-transform: uppercase;
   white-space: nowrap;
   outline: none;
@@ -76,14 +76,49 @@ export default {
     padding: 0 4px;
   }
   &_green {
-    @include buttonPrimary($green-color, $black-color, $white-color);
+    @include buttonPrimary(
+      $green-color,
+      $orange-color,
+      $black-color,
+      $white-color
+    );
   }
   &_red {
-    @include buttonPrimary($red-color, $black-color, $white-color);
+    @include buttonPrimary(
+      $red-color,
+      $orange-color,
+      $black-color,
+      $white-color
+    );
+  }
+  &_delete {
+    opacity: 0.2;
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+    @include buttonPrimary(
+      $orange-color,
+      $red-color,
+      $black-color,
+      $white-color
+    );
   }
   &_yellow {
-    border-color: $yellow-color;
-    @include buttonPrimary($red-color, $black-color, $white-color);
+    @include buttonPrimary(
+      $yellow-color,
+      $red-color,
+      $black-color,
+      $white-color
+    );
+  }
+  &_orange {
+    @include buttonPrimary(
+      $orange-color,
+      $green-color,
+      $black-color,
+      $white-color
+    );
   }
 }
 </style>

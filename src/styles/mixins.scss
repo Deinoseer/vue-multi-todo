@@ -14,9 +14,11 @@
   }
 }
 
-@mixin buttonPrimary($hoverBorderColor, $activeBorderColor, $disabledBorderColor) {
+@mixin buttonPrimary($borderColor, $hoverBorderColor, $activeBorderColor, $disabledBorderColor) {
   color: $white-color;
-  &:hover:not([disabled]) {
+  border-color: $borderColor;
+  &:hover:not([disabled]),
+  &:focus:not([disabled]) {
     border-color: $hoverBorderColor;
   }
   &:active:not([disabled]) {

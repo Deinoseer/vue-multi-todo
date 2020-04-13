@@ -150,8 +150,8 @@ export default {
   }
   &__btns {
     position: absolute;
-    right: 0;
-    top: -22px;
+    right: -$box-shadow-offset;
+    top: 0;
     visibility: hidden;
     opacity: 0;
     height: 100%;

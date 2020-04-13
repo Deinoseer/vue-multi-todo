@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <router-link to="/todo">
+      <img alt="Vue logo" src="../assets/logo.png" />
+    </router-link>
     <p class="home__text">
       This is a To-Do lists using Vuex
     </p>

@@ -6,12 +6,12 @@
     </div>
     <div class="modal-confirm__footer">
       <div class="modal-confirm__btn">
-        <base-button class="button_green" @click="$emit('modal-close', true)">
+        <base-button class="button_red" @click="$emit('modal-close', true)">
           accept
         </base-button>
       </div>
       <div class="modal-confirm__btn">
-        <base-button class="button_red" @click="$emit('modal-close', false)">
+        <base-button class="button_green" @click="$emit('modal-close', false)">
           decline
         </base-button>
       </div>

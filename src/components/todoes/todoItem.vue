@@ -15,7 +15,7 @@
       </label>
     </div>
     <div class="todo-item__delete">
-      <base-button class="button_red" @click="removeTodo">x</base-button>
+      <base-button class="button_delete" @click="removeTodo">x</base-button>
     </div>
   </div>
 </template>
@@ -53,12 +53,6 @@ export default {
   box-sizing: border-box;
   transition: color $transition;
 
-  &:hover & {
-    &__delete {
-      opacity: 1;
-    }
-  }
-
   &__check {
     margin-right: 8px;
   }
@@ -70,8 +64,6 @@ export default {
 
   &__delete {
     margin-left: auto;
-    opacity: 0.1;
-    transition: opacity $transition;
   }
 
   &_checked {

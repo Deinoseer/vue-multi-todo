@@ -29,12 +29,21 @@ export default {
 <style scoped lang="scss">
 .checkbox {
   &__label {
+    position: relative;
     user-select: none;
     display: flex;
     align-items: center;
   }
   &__input {
-    display: none;
+    position: absolute;
+    opacity: 0;
+    & + span {
+      transition: $transition-fast all;
+    }
+    &:hover + span,
+    &:focus + span {
+      border-color: $yellow-color;
+    }
     &:checked + span {
       background-position: center;
       background-color: $red-color;
