@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <router-link to="/todo">
-      <img alt="Vue logo" src="../assets/logo.png" />
-    </router-link>
+    <img
+      class="home__logo"
+      ref="logo"
+      alt="Vue logo"
+      src="../assets/logo.png"
+      @click="animateAndGoTodo"
+    />
     <p class="home__text">
       This is a To-Do lists using Vuex
     </p>
@@ -24,7 +28,15 @@
 <script>
 export default {
   name: "Home",
-  components: {}
+  components: {},
+  methods: {
+    animateAndGoTodo() {
+      this.$refs.logo.classList.add("animate");
+      setTimeout(() => {
+        this.$router.push("todo");
+      }, 800);
+    }
+  }
 };
 </script>
 
@@ -53,6 +65,17 @@ export default {
   }
   &__blink {
     @include blink();
+  }
+  &__logo {
+    cursor: pointer;
+    &.animate {
+      animation: spin 0.8s ease 1;
+      @include keyframes(spin) {
+        50% {
+          transform: rotate3d(10, 10, 3, 45deg) scale(0.9);
+        }
+      }
+    }
   }
 }
 </style>
