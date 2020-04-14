@@ -1,6 +1,6 @@
 @mixin font($size, $color: $black-color, $weight: normal) {
   color: $color;
-  font-family: 'Fira Code', Helvetica, Arial, monospace;
+  font-family: "Fira Code", Helvetica, Arial, monospace;
   font-size: $size;
   font-weight: $weight;
 }
@@ -14,7 +14,12 @@
   }
 }
 
-@mixin buttonPrimary($borderColor, $hoverBorderColor, $activeBorderColor, $disabledBorderColor) {
+@mixin buttonPrimary(
+  $borderColor,
+  $hoverBorderColor,
+  $activeBorderColor,
+  $disabledBorderColor
+) {
   color: $white-color;
   border-color: $borderColor;
   &:hover:not([disabled]),
@@ -41,23 +46,27 @@
   }
 }
 
-@mixin fade() {
+@mixin fade($enter: true, $leave: true) {
   .fade-enter {
     opacity: 0;
   }
 
-  .fade-enter-active {
-    transition: opacity $transition/2 ease;
+  @if $enter {
+    .fade-enter-active {
+      transition: opacity $transition/2 ease;
+    }
   }
 
-  .fade-leave-active {
-    transition: opacity $transition/2 ease;
-    opacity: 0;
+  @if $leave {
+    .fade-leave-active {
+      transition: opacity $transition/2 ease;
+      opacity: 0;
+    }
   }
 }
 
-@mixin blink() {
-  animation: blink 1s steps(2, start) infinite;
+@mixin blink($time: 1s) {
+  animation: blink $time steps(2, start) infinite;
 
   @include keyframes(blink) {
     to {
@@ -69,9 +78,9 @@
 @mixin shadowWave() {
   border: 2px solid $green-color;
   box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $red-color,
-  10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
-  15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
-  20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+    10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+    15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+    20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
 
   &:hover {
     animation: shadow-wave 1s ease infinite;
@@ -79,27 +88,27 @@
   @include keyframes(shadow-wave) {
     0% {
       box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $red-color,
-      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
-      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
-      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+        10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+        15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+        20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
     }
     35% {
       box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
-      10px -10px 0 -2px $dark-green-color, 10px -10px $red-color,
-      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
-      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+        10px -10px 0 -2px $dark-green-color, 10px -10px $red-color,
+        15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+        20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
     }
     65% {
       box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
-      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
-      15px -15px 0 -2px $dark-green-color, 15px -15px $red-color,
-      20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
+        10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+        15px -15px 0 -2px $dark-green-color, 15px -15px $red-color,
+        20px -20px 0 -2px $dark-green-color, 20px -20px $yellow-color;
     }
     100% {
       box-shadow: 5px -5px 0 -2px $dark-green-color, 5px -5px $yellow-color,
-      10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
-      15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
-      20px -20px 0 -2px $dark-green-color, 20px -20px $red-color;
+        10px -10px 0 -2px $dark-green-color, 10px -10px $yellow-color,
+        15px -15px 0 -2px $dark-green-color, 15px -15px $yellow-color,
+        20px -20px 0 -2px $dark-green-color, 20px -20px $red-color;
     }
   }
 }
@@ -118,4 +127,3 @@
     @content;
   }
 }
-

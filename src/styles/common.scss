@@ -1,5 +1,5 @@
-@import 'fonts';
-@import 'libs/notification';
+@import "fonts";
+@import "libs/notification";
 
 html {
   min-height: 100%;
@@ -8,13 +8,15 @@ html {
   overflow-x: auto;
 }
 
-html *, html *:before, html *:after {
+html *,
+html *:before,
+html *:after {
   -webkit-box-sizing: inherit;
   box-sizing: border-box;
 }
 
 * {
-  font-family: 'Fira Code', Helvetica, Arial, monospace;
+  font-family: "Fira Code", Helvetica, Arial, monospace;
 }
 
 body {
@@ -46,9 +48,22 @@ input[type="text"] {
   }
 }
 
-
 input[type="checkbox"] {
   background: none;
   border: none;
 }
 
+.enter {
+  font-size: 8px;
+  border: 1px dotted $green-color;
+  color: $green-color;
+  padding: 2px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: $transition-fast border-color, $transition-fast color;
+  &:hover {
+    color: $orange-color;
+    border-color: $orange-color;
+  }
+}

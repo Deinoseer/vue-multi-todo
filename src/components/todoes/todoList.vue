@@ -1,12 +1,15 @@
 <template>
   <div class="todo-list shadow-wave">
-    <div class="todo-list__title" @click="editingTitle = true">
+    <div class="todo-list__title" @click.capture="openEditor">
       <span v-if="!editingTitle">{{ title }}</span>
       <label v-else>
+        <span class="todo-list__title-enter enter" @click="changeListTitle">
+          Enter
+        </span>
         <input
+          ref="inputTitle"
           type="text"
           :value="title"
-          @blur="changeListTitle"
           @keyup.enter="changeListTitle"
         />
       </label>
@@ -41,10 +44,11 @@
 import { mapGetters } from "vuex";
 import todoItem from "Components/todoes/todoItem";
 import emitter from "@/mixins/emitter";
+import close from "@/mixins/close";
 
 export default {
   components: { todoItem },
-  mixins: [emitter],
+  mixins: [emitter, close],
   data: () => ({
     editingTitle: false,
     newTodo: ""
@@ -73,9 +77,9 @@ export default {
       }
       this.$emit("delete-list", this.id, "list");
     },
-    changeListTitle(e) {
+    changeListTitle() {
       this.editingTitle = false;
-      this.$emit("change-title", this.id, e.target.value);
+      this.$emit("change-title", this.id, this.$refs.inputTitle.value);
     },
     addTodo() {
       if (!this.newTodo) {
@@ -92,6 +96,15 @@ export default {
     },
     changeText(id, text) {
       this.$emit("change-text", { id, text });
+    },
+    openEditor() {
+      this.editingTitle = true;
+      this.$nextTick(() => {
+        this.$refs.inputTitle.focus();
+      });
+    },
+    escKeyup() {
+      this.editingTitle = false;
     }
   }
 };
@@ -125,9 +138,17 @@ export default {
 
     label,
     input {
+      position: relative;
       width: 100%;
       height: 32px;
       @include font(18px, $white-color, 400);
+    }
+    &-enter {
+      position: absolute;
+      z-index: 1;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
   &__add-todo {

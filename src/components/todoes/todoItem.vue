@@ -3,13 +3,16 @@
     <div class="todo-item__check">
       <checkbox-el @input="toggleTodo" :checked="checked"></checkbox-el>
     </div>
-    <div class="todo-item__text" @click="editingText = true">
+    <div class="todo-item__text" @click.capture="openEditor">
       <span v-if="!editingText">{{ text }}</span>
       <label v-else class="todo-item__edit">
+        <span class="todo-item__text-enter enter" @click="changeTodoText">
+          Enter
+        </span>
         <input
+          ref="inputText"
           type="text"
           :value="text"
-          @blur="changeTodoText"
           @keyup.enter="changeTodoText"
         />
       </label>
@@ -21,7 +24,10 @@
 </template>
 
 <script>
+import close from "@/mixins/close";
+
 export default {
+  mixins: [close],
   data: () => ({
     editingText: false
   }),
@@ -37,9 +43,18 @@ export default {
     toggleTodo() {
       this.$emit("toggle", this.id);
     },
-    changeTodoText(e) {
+    changeTodoText() {
       this.editingText = false;
-      this.$emit("change-text", this.id, e.target.value);
+      this.$emit("change-text", this.id, this.$refs.inputText.value);
+    },
+    openEditor() {
+      this.editingText = true;
+      this.$nextTick(() => {
+        this.$refs.inputText.focus();
+      });
+    },
+    escKeyup() {
+      this.editingText = false;
     }
   }
 };
@@ -60,6 +75,14 @@ export default {
     position: relative;
     width: 100%;
     margin-right: 12px;
+
+    &-enter {
+      position: absolute;
+      z-index: 1;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   &__delete {
